@@ -7,9 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import com.example.todolist.user.IUserRepository;
 
 import at.favre.lib.crypto.bcrypt.BCrypt;
+import com.example.todolist.user.IUserRepository;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -27,7 +27,7 @@ public class FilterTaskAuth extends OncePerRequestFilter {
 
                 var servLetPath = request.getServletPath();
 
-                if(servLetPath.equals("/tasks")) {
+                if(servLetPath.equals("/tasks/")) {
                     var authorization = request.getHeader("Authorization");
     
                     var authEncoded = authorization.substring("Basic ".length()).trim();
