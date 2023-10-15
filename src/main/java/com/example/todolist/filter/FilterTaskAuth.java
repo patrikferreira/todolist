@@ -30,7 +30,7 @@ public class FilterTaskAuth extends OncePerRequestFilter {
                 if(servLetPath.equals("/tasks")) {
                     var authorization = request.getHeader("Authorization");
     
-                    var authEncoded = authorization.substring("Basic".length()).trim();
+                    var authEncoded = authorization.substring("Basic ".length()).trim();
     
                     byte[] authDecode = Base64.getDecoder().decode(authEncoded);
     
@@ -39,6 +39,7 @@ public class FilterTaskAuth extends OncePerRequestFilter {
                     String[] credentials = authString.split(":");
                     String username = credentials[0];
                     String password = credentials[1];
+
     
                     var user = this.userRepository.findByUsername(username);
                     if(user == null) {
